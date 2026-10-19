@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <div class="box">
+    <h2>Register</h2>
+    <p id="error" class="error"></p>
+
+    <form action="/register" method="POST">
+      <label>Name</label>
+      <input type="text" name="name" required>
+
+      <label>Email</label>
+      <input type="email" name="email" required>
+
+      <label>Password</label>
+      <input type="password" name="password" required>
+
+      <label>Role</label>
+      <select name="role" id="role">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+
+      <div id="adminBox" style="display:none">
+        <label>Admin code</label>
+        <input type="text" name="adminCode">
+      </div>
+
+      <button type="submit">Register</button>
+    </form>
+
+    <p>Already registered? <a href="/login.html">Login</a></p>
+  </div>
+
+  <script>
+    document.getElementById('role').onchange = function () {
+      if (this.value === 'admin') {
+        document.getElementById('adminBox').style.display = 'block';
+      } else {
+        document.getElementById('adminBox').style.display = 'none';
+      }
+    };
+
+    const err = new URLSearchParams(location.search).get('error');
+    if (err) {
+      document.getElementById('error').textContent = err;
+      document.getElementById('error').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>

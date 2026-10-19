@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <div class="navbar">
+    <div>My App</div>
+    <div>
+      <span id="who"></span>
+      <a href="/logout">Logout</a>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="card">
+      <h2>Dashboard</h2>
+    </div>
+  </div>
+
+  <script>
+    async function show() {
+      const me = await (await fetch('/me')).json();
+      document.getElementById('who').textContent = me.name + ' (' + me.role + ')';
+    }
+
+    show();
+  </script>
+
+</body>
+</html>
